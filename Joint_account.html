@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <style>
+        body{
+            background-color: rgb(156, 147, 135)
+        }
+        tr {
+            display: block;
+            float: left;
+        }
+
+        th,
+        td {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <button data-bind="visible:signup ,click:login1">login</button><button
+        data-bind="visible:login, click:signup1">signup</button><br><br>
+    <table data-bind="visible:login">
+        <tr>
+            <th>UserName</th>
+            <th>password</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="lname"></td>
+            <td><input type="text" id="lpass"></td>
+        </tr>
+
+    </table>
+    <button data-bind="visible:login,click:login2">LOGIN</button>
+    <table data-bind="visible:signup">
+        <tr>
+            <th>UserName1:</th>
+            <th>Password1:</th>
+            <th>UserName2:</th>
+            <th>Password2:</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="sname1"></td>
+            <td><input type="text" id="spass1"></td>
+            <td><input type="text" id="sname2"></td>
+            <td><input type="text" id="spass2"></td>
+        </tr>
+    </table>
+    <button data-bind="visible:signup,click:signup2">SIGNUP</button>
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script>
+
+        var viewModel = function () {
+            var self = this;
+            localStorage.setItem('acc_list', null);
+            self.name1 = ko.observable();
+            self.pass1 = ko.observable();
+            self.name2 = ko.observable();
+            self.pass2 = ko.observable();
+            self.balance = ko.observable(0);
+            self.accounts = ko.observableArray();
+            self.login = ko.observable(false);
+            self.signup = ko.observable(true);
+            self.login1 = function () {         //for opening login and hiding signup
+                self.login(true);
+                self.signup(false);
+
+            }
+            self.signup1 = function () {        //for opening signup and hiding login
+                self.signup(true);
+                self.login(false);
+            }
+            self.signup2 = function () {        //signup operation
+                var name11 = $('#sname1').val();
+                var pass11 = $('#spass1').val();
+                var name22 = $('#sname2').val();
+                var pass22 = $('#spass2').val();
+                localStorage.setItem('name1', name11);
+                localStorage.setItem('pass1', pass11);
+                localStorage.setItem('name2', name22);
+                localStorage.setItem('pass2', pass22);
+                localStorage.setItem('balance', self.balance());
+                alert("signup successful");
+                
+            }
+            self.login2 = function () {         //login operation
+                var name11 = localStorage.getItem('name1');
+                var pass11 = localStorage.getItem('pass1');
+                var name22 = localStorage.getItem('name2');
+                var pass22 = localStorage.getItem('pass2');
+                var lname = $('#lname').val();
+                var lpass = $('#lpass').val();
+                if ((lname == name11 && lpass == pass11) || (name22 == lname && lpass == pass22)) {
+                    window.open("transaction.html?" + lname);
+                    alert("login successful");
+                }
+                else {
+                    alert("Invalid username or password");
+                }
+
+            }
+
+
+
+        }
+
+
+        ko.applyBindings(viewModel);
+    </script>
+</body>
+
+</html>

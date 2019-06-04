@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <style>
+        body
+        {
+
+        }
+        </style>
+    </head>
+
+<body>
+    <h3>Welcome<span data-bind="text:name"></span></h3>
+    <br>
+    <h4>Your Account balance is<span data-bind="text:bal"></span></h4><br>
+    Enter Amount:<input type="text" data-bind='value:amt'><br>
+    <button data-bind="click:deposit">Deposit</button>
+    <button data-bind="click:withdraw">WithDraw</button>
+</body>
+<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script>
+    var viewModel = function () {
+
+        self = this;
+        self.name = ko.observable();
+        self.url = ko.observable("");
+        url = decodeURIComponent(window.location.href);
+        url = url.split('?')[1];
+        self.name = url;
+        self.bal = ko.observable(localStorage.getItem('balance'));
+        self.amt = ko.observable();
+
+        self.deposit = function () {                //deposit
+            self.bal(Number(self.bal()) + Number(self.amt()));
+            localStorage.setItem('balance', self.bal());
+            alert("deposit successful");
+
+        }
+        self.withdraw = function () {               //withdraw
+            if (Number(self.amt()) >= Number(self.bal()) || (Number(self.bal() <= 0))) {
+                alert("insufficient fund");
+            }
+            else {
+                self.bal(Number(self.bal()) - Number(self.amt()));
+                localStorage.setItem('balance', self.bal());
+                alert("Withdraw successful");
+            }
+
+        }
+    }
+
+    ko.applyBindings(viewModel);
+</script>
+</body>
+
+</html>
