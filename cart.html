@@ -176,7 +176,7 @@
                 total = 0;
                 for (var i = 0; i < self.incart().length; i++) {
                     total = Number(total) + Number(self.incart()[i].p_total());
-                    console.log(self.incart()[i].p_total());
+                    
                 } return total;
             })
             self.add = function () {                            //adding product to the list
@@ -218,11 +218,10 @@
                 self.products.remove(obj);
                 self.incart.remove(obj);
             }
-            self.addtocart = function (item) {
-                console.log(self.incart());  
+            self.addtocart = function (item) {  //adding to the cart
                 if(item.p_quantity()!=0)
                 {
-                var index=0;          //adding to the cart
+                var index=0;          
                 for (var i = 0; i < self.incart().length; i++) {
                     if (item.p_id() == self.incart()[i].p_id()) {
                         self.count(self.count() + 1);
