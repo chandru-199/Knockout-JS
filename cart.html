@@ -191,7 +191,6 @@
                     self.produv
                     self.p_id("");
                     self.p_name("");
-                    self.p_quantity("");
                     self.p_price("");
                 }
                 else {
@@ -259,10 +258,6 @@
             }
             self.descript = function (item) {
                 localStorage.setItem(p_index,ko.toJSON(item));
-                /*localStorage.setItem('pname',item.p_name());
-                localStorage.setItem('pprice',item.p_price());
-                localStorage.setItem('pquantity',item.p_quantity());
-                localStorage.setItem('ptotal',item.p_total());*/
                 window.open("description1.html?"+p_index);
                 p_index++;
                 
