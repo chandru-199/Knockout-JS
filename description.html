@@ -38,10 +38,8 @@
                         self = this;
                         var url=window.location.href;
                         url=url.split('?')[1];
-                        //localStorage.getItem(url));
                         var jss=localStorage.getItem(url);
                         self.param = ko.observable(JSON.parse(jss));
-                
                         self.p_id=ko.observable(self.param().p_id);
                         self.p_name = ko.observable(self.param().p_name);
                         self.p_price = ko.observable(self.param().p_price);
