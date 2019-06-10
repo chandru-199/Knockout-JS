@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Description</title>
+    <style>
+        tr:nth-child(even) {
+            background-color: #6b6161;
+        }
+        tr:nth-child(odd) {
+            background-color: #68b0da;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h3>Product Description</h3>
+    </center>
+    <table align="center">
+        <tr>
+            <th>Product Id </th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+            <th>Total Price</th>
+        </tr>
+        <td data-bind="text:p_id"></td>
+        <td data-bind="text:p_name"></td>
+        <td data-bind="text:p_price"></td>
+        <td data-bind="text:p_quantity"></td>
+        <td data-bind="text:p_total"></td>
+        <tr>
+            <th </tr> </table> </body> <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js">
+            </script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+                <script>
+                    var viewModel = function () {
+                        self = this;
+                        var url=window.location.href;
+                        url=url.split('?')[1];
+                        //localStorage.getItem(url));
+                        var jss=localStorage.getItem(url);
+                        self.param = ko.observable(JSON.parse(jss));
+                
+                        self.p_id=ko.observable(self.param().p_id);
+                        self.p_name = ko.observable(self.param().p_name);
+                        self.p_price = ko.observable(self.param().p_price);
+                        self.p_quantity = ko.observable(self.param().p_quantity);
+                        self.p_total = ko.observable(self.param().p_total);
+                    }
+                    ko.applyBindings(viewModel);
+                </script>
+</body>
+
+</html>
