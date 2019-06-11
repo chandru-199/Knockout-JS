@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <style>
+        #desc {
+            width: 90%;
+            height: 30%;
+            background-color: grey;
+            margin-left: 40px;
+        }
+
+        span {
+            margin-right: 50px;
+
+        }
+
+        th {
+            background-color: white;
+
+        }
+
+        td {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>PRODUCT DESCRIPTION</h1>
+    </center>
+    <center>
+        <div id="desc">
+            <table id="tabb">
+                <tr>
+                    <th>Product_Name</th>
+                    <th>Product_skew</th>
+                    <th>product Quantity</th>
+                    <th>Product_price</th>
+                    <th>Total_Price</th>
+                    </th>
+                </tr>
+                <table>
+        </div>
+    </center>
+    <p></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var url = window.location.href;
+        url = url.split('?')[1];
+        var data = JSON.parse(localStorage.getItem(url));
+        
+        $('#tabb').append("<tr></tr>");
+        $(data).each(function (i, val) {
+
+
+            $("#tabb tr:last").append("<td><span>" + data[i] + "</td><span>");
+
+        });
+    </script>
+</body>
+
+</html>
