@@ -44,7 +44,8 @@ define('table2', ['table1'], function (tab1) {
                 }); 
                 $("#tab2 tr:last").find('td').children()[4].value = total;
                 total = 1;
-            }
+                
+            }count=0;
             });
 
 
