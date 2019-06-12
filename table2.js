@@ -1,4 +1,4 @@
-define('table2', ['table1'], function (tab1) {
+define('table2', function () {
     var p_index = 0;
     var total = 1;
    var count=0;
